@@ -1,4 +1,9 @@
-#collections (lists)
+#collections (lists[]=>)
+   #allow duplicate
+   #any type of data can be restored
+   #we can modify the list item. we can add or remove insert(),append(),extent(),pop() 
+
+
 
 #add number are variables in end of the line
 
