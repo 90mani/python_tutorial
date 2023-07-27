@@ -17,7 +17,7 @@ def home():
 
 
     @app.route("/customer", methods = ['GET'])
-    def GETCustomer():
+    def getCustomer():
          if (request.method == 'GET'):
   
            data = {"Name": "rani", "A/c number": 101, "balance": 15000}
