@@ -8,7 +8,7 @@ app = Flask(__name__)
 # on the terminal type: curl http://127.0.0.1:5000/
 # returns hello world when we use GET.
 # returns the data that we send when we use POST.
-@app.route('/', methods = ['GET'])
+@app.route("/", methods = ['GET'])
 def home():
     if (request.method == 'GET'):
   
@@ -20,10 +20,48 @@ def home():
     def getCustomer():
          if (request.method == 'GET'):
   
-           data = {"Name": "rani", "A/c number": 101, "balance": 15000}
+           data = '{"Name": "rani", "A/c number": 101, "balance": 15000}'
            return jsonify({'data': data})
 
+
+    @app.route("/customer/loan", methods = ['GET'])
+    def getCustomerloan():
+         if (request.method == 'GET'):
   
+           data = [
+                {
+                       "A/C number":10001,
+                       "Name":"jeevi",
+                       "balance":3000,
+                       "loan number":12,
+                       "duration":"6 month",
+                       "payable":"not pay"
+
+                  },
+                   
+                   {  
+                       "A/C number":10002,
+                       "Name":"kayal",
+                       "balance":10000,
+                       "loan number":15,
+                       "duration":"2 month",
+                       "payable":"pay"
+                 }
+             ]  
+                    
+           return jsonify({'data': data})
+
+
+    @app.route("/customer/loan/status", methods = ['GET'])
+    def getCustomerstatus():
+             if (request.method == 'GET'):
+  
+               data = '{"Name": "ima", "A/c number": 201, "message":"active"}'
+               data = '{"Name": "rose", "A/c number": 202, "message":"in active"}'
+           
+               return jsonify({'data': data})
+
+
 # A simple function to calculate the square of a number
 # the number to be squared is sent in the URL when we use GET
 # on the terminal type: curl http://127.0.0.1:5000 / home / 10
