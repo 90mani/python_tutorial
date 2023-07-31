@@ -14,19 +14,19 @@ mydb = mysql.connector.connect(
 mycursor = mydb.cursor()
 
 
-@app.route("/", methods = ['GET'])
+@app.route("/", methods=["GET"])
 def home():
-	if request.method == 'GET':
-		data = "server starting"
-                 return jsonify({"data": data})       
+    if request.method == "GET":
+        data = "server starting"
+        return jsonify({"data": data})
+
 
 @app.route("/student", methods=["GET"])
 def getstudent():
     mycursor.execute("SELECT * from user_details")
     myresult = mycursor.fetchall()
-    return jsonify({"data": "first_name"})
+    return jsonify({"data": myresult})
 
-	
+
 if __name__ == "__main__":
-    app.run(debug=True)	
-   
+    app.run(debug=True)
