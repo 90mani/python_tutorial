@@ -20,8 +20,13 @@ def home():
 @app.route("/product", methods=["GET", "POST"])
 def product():
     if request.method == "GET":
+        print(request.get_json())
         data = {"itemName": "Rice", "Price": 1200, "Quantity": "25kg"}
         return jsonify({"data": data})
+    if request.method == "POST":
+        print(request.get_json())
+        data = {"message": "Inserted successfully"}
+        return jsonify({"data": data}), 201
 
 
 @app.route("/list", methods=["GET", "POST"])
