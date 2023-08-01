@@ -32,25 +32,35 @@ def getstudent():
         print(requestPayload)
         print(requestPayload["userId"])
         sql = "INSERT INTO user_details (user_id, username,first_name,last_name,gender,password,status) VALUES (%s,%s,%s,%s,%s,%s,%s)"
-        val = (requestPayload["userId"], requestPayload["u_name"],requestPayload["f_name"],requestPayload["lastname"],requestPayload["gender"],
-                requestPayload["password"],requestPayload["status"])
+        val = (
+            requestPayload["userId"],
+            requestPayload["u_name"],
+            requestPayload["f_name"],
+            requestPayload["lastname"],
+            requestPayload["gender"],
+            requestPayload["password"],
+            requestPayload["status"],
+        )
         mycursor.execute(sql, val)
         mydb.commit()
         return jsonify({"data": str(mycursor.rowcount) + "record inserted."}), 201
 
+
 @app.route("/student", methods=["DELETE"])
 def deletestudent():
     if request.method == "DELETE":
-        sql = "DELETE FROM user_details WHERE u_name = %s"
-        adr = ("kani21", )
+        requestPayload = request.get_json()
+        print(requestPayload)
+        print(requestPayload["userId"])
+        sql = "DELETE FROM user_details WHERE user_id = " + str(
+            requestPayload["userId"]
+        )
+        print(sql)
 
-        mycursor.execute(sql, adr)
-
-        mydb.commit()
+        mycursor.execute(sql)
 
         print(mycursor.rowcount, "record(s) deleted")
-    
-
+        return jsonify({"data": str(mycursor.rowcount) + "record(s) deleted"}), 200
 
 
 # @app.route("/student", methods=["POST"])
