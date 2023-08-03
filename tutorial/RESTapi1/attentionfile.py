@@ -1,15 +1,13 @@
-from flask import Flask, jsonify, request
+from crypt import methods
+from tkinter import INSERT
+from flask import Flask, Jsonify, request
 import mysql.connector
-
-
 app = Flask(__name__)
-
-
-mydb = mysql.connector.connect(
+    mydb = mysql.connector.connect(
     host="sql6.freesqldatabase.com",
-    user="sql6635850",
-    password="WWhxxlLRHb",
-    database="sql6635850",
+    user="sql6636952",
+    password="9JJrXbm37m",
+    database="sql6636952",
 )
 mycursor = mydb.cursor()
 
@@ -18,37 +16,32 @@ mycursor = mydb.cursor()
 def home():
     if request.method == "GET":
         data = "server starting"
-        return jsonify({"data": data})
-
-
-@app.route("/student", methods=["GET", "POST"])
-def getstudent():
-    if request.method == "GET":
-        mycursor.execute("SELECT * from Attention")
-        myresult = mycursor.fetchall()
-        return jsonify({"data": myresult})
-    if request.method == "POST":
-        requestPayload = request.get_json()
-        print(requestPayload)
-        print(requestPayload["Roll No"])
-        sql = "INSERT INTO Attention (Roll No,Name,Degree,Course,Sem,Attention) VALUES (%s, %s, %s, %s, %s, %s)"
-        val = (requestPayload["Roll NO"], requestPayload["name"], requestPayload["Degree"], requestPayload["Course"], requestPayload["Sem"], requestPayload["Attention"])
-        mycursor.execute(sql, val)
+        return Jsonify({"data:data"})
+    @app.route("/student", methods=["GET", "POST"])
+    def getstudent():
+        if request.method == "GET":
+            mycursor.execute("SELECT *from stu_attendance")
+            myresult =mycursor.fetchall()
+            return Jsonify({"data":myresul"})
+        if request.methods == "POST":
+        requestpayload =request.get_Json()
+        print(requestpayload)
+        print(requestpayload["Roll No"])
+        sql = "INSERT INTO stu_attendance(Roll No,Name,Degree,Course,Sem,attendance)VALUES(%s,%s,%s,%s,%s,%s)"
+        val = (requestpayload["Roll No"],requestpayload["Name"]requestpayload["Degree"]requestpayload["Course"]requestpayload["Sem"]requestpayload["attendance"])
+        mycursor.execute(sql,val)
         mydb.commit()
-        return jsonify({"data": str(mycursor.rowcount) + "record inserted."}), 201
-
-
-# @app.route("/student", methods=["POST"])
-# def insertStudent():
-#     requestPayload = request.get_json()
-#     print(requestPayload)
-#     print(requestPayload["Roll No"])
-#     sql = "INSERT INTO Attention (Roll No,Name,Degree,Course,Sem,Attention) VALUES (%s, %s, %s, %s, %s, %s)"
-#      val = (requestPayload["Roll NO"], requestPayload["Name"], requestPayload["Degree"], (requestPayload["Course"], requestPayload["Sem"], requestPayload["Attention"])
-
-#     
-#     mycursor.execute(sql, val)
-#     mydb.commit()
-#     return jsonify({"data": str(mycursor.rowcount) + "record inserted."})
-    if __name__ == "__main__":
-       app.run(debug=True)
+        return Jsonify({"data": str(mycursor.rowcount)+"recordinserted."}).201
+    #@app.route("/student",methods=["POST"])
+    #def insertstudent():
+    # requestpayload =request.get_Json()
+        print(requestpayload)
+        print(requestpayload["Roll No"])
+        sql = "INSERT INTO stu_attendance(Roll No,Name,Degree,Course,Sem,attendance)VALUES(%s,%s,%s,%s,%s,%s)"
+        val = (requestpayload["Roll No"],requestpayload["Name"]requestpayload["Degree"]requestpayload["Course"]requestpayload["Sem"]requestpayload["attendance"])
+        mycursor.execute(sql,val)
+        mydb.commit()
+        return Jsonify({"data": str(mycursor.rowcount)+"recordinserted."})
+        if __name__=="__Bhuvi__":
+        app.run(debug=True)
+                                        
