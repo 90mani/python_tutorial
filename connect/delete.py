@@ -60,7 +60,7 @@ def deleteauthor():
         print(sql)
 
         mycursor.execute(sql)
-
+        mydb.commit()
         print(mycursor.rowcount, "record(s) deleted")
         return jsonify({"data": str(mycursor.rowcount) + "record(s) deleted"}), 200
     

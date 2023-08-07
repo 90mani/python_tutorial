@@ -47,7 +47,7 @@ def getauthor():
 
         mycursor.execute(sql, val)
         mydb.commit()
-        return jsonify({"data": srt(mycursor.rowcount)+ "record inserted."}),201
+        return jsonify({"data": str(mycursor.rowcount)+ "record inserted."}),201
     
 #update details
     
@@ -56,17 +56,10 @@ def updateauthor():
     if request.method == "PUT":
         requestPayload = request.get_json()
         print(requestPayload)
-        sql =(
-            "UPDATE author.details SET name = '"
-            + str(requestPayload["name"])
-            + "' WHERE auid = "
-            + str(requestPayload["auid"])
-        )
-
+        sql ="UPDATE author.details SET name = '" + str(requestPayload["name"])+ "' WHERE auid =" + str(requestPayload["auid"])
         print(sql)
-
         mycursor.execute(sql)
-
+        mydb.commit()
         print(mycursor.rowcount, "record(s) update")
         return jsonify({"data": str(mycursor.rowcount) + "record(s) update"}), 200
 

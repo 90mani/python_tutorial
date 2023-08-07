@@ -37,7 +37,7 @@ def getauthor():
         val = (requestPayload["auid"], requestPayload["name"])
         mycursor.execute(sql, val)
         mydb.commit()
-        return jsonify({"data": str(mycursor.rowcount) + "record inserted."}),201
+        return jsonify({"data": str(mycursor.rowcount) + "record inserted."}), 201
 
 
     
@@ -53,19 +53,5 @@ def getauthor():
         #mydb.commit()
         #return jsonify({"data": str(mycursor.rowcount)+ "record inserted."})
     
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
 if __name__ == "__main__":
     app.run(debug=True)
