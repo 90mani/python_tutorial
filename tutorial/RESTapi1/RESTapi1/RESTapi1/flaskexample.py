@@ -1,18 +1,9 @@
-
 # Using flask to make an api
 # import necessary libraries and functions
 from flask import Flask, jsonify, request
-import mysql.connector
 
 # creating a Flask app
 app = Flask(__name__)
-mydb =mysql.connector.connect (
-    host ="sql6.freesqldatabase.com",
-    user ="sql6635679",
-    password ="Kt8TDZLfni",
-    database ="sql6635679",
-    )
-mycursor =mydb.cursor()
 
 
 # on the terminal type: curl http://127.0.0.1:5000/
@@ -25,11 +16,11 @@ def home():
         return jsonify({"data": data})
 
 
-@app.route("/employees", methods=["GET"],["POST"])
+@app.route("/employees", methods=["GET"])
 def getEmployee():
     if request.method == "GET":
         data = [
-            { "Roll no":1001, "name": "Abi", "Degree":"B.sc", "Course": "C.S","Sem":"1 st",},
+            {"name": "John", "id": 1001, "email": "test@gmail.com"},
             {"name": "Ravi", "id": 1002, "email": "test1@gmail.com"},
             {"name": "Mani", "id": 1003, "email": "test2@gmail.com"},
         ]
