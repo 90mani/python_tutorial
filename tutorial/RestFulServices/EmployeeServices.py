@@ -20,9 +20,9 @@ def home():
         return jsonify({"data": data})
 
 
-@app.route("/api/employees", methods=["GET"])
+@app.route("/api/employees", methods=["POST"])
 def getEmployee():
-    if request.method == "GET":
+    if request.method == "POST":
         data = [
             {"name": "John", "id": 1001, "email": "test@gmail.com"},
             {"name": "Ravi", "id": 1002, "email": "test1@gmail.com"},
