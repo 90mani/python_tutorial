@@ -39,27 +39,21 @@ mycursor = mydb.cursor()
 
 class StudentReuqetBody(Schema):
     userId = fields.Int(required=True, description="Student id")
-    u_name = fields.String(required=True, description="Student name")
-    passcode = fields.String(required=True, description="Student name")
-    number = fields.Int(required=True, description="Student name")
+    u_name = fields.String(required=False, description="Student name")
+    passcode = fields.String(required=False, description="Student name")
+    number = fields.Int(required=False, description="Student name")
     no_experiance = fields.Int(required=False, description="Student name")
 
 
-class Hello(MethodResource, Resource):
-    @doc(description="It's my first get hello api", tags=["Hello API"])
-    def get(self):
-        return jsonify({"data": "hello world"})
-
-
 class student(MethodResource, Resource):
-    @doc(description="get student data", tags=["Student"])
-    def get(self):
+    @doc(description="Fet all employees data", tags=["Employee"])
+    def get(self, **kwargs):
         if request.method == "GET":
             mycursor.execute("SELECT * from employee")
             myresult = mycursor.fetchall()
             return jsonify({"data": myresult})
 
-    @doc(description="insert student data", tags=["Student"])
+    @doc(description="insert employee data", tags=["Employee"])
     @use_kwargs(StudentReuqetBody, location=("json"))
     def post(self, **kwargs):
         if request.method == "POST":
@@ -76,12 +70,20 @@ class student(MethodResource, Resource):
             return jsonify({"data": str(mycursor.rowcount) + "record inserted"})
 
 
-api.add_resource(Hello, "/hello")
-api.add_resource(student, "/student")
+class SearchStudent(MethodResource, Resource):
+    @doc(description="Get employee by id", tags=["Employee"])
+    def get(self, id):
+        if request.method == "GET":
+            mycursor.execute("SELECT * from employee where employee_id = " + str(id))
+            myresult = mycursor.fetchall()
+            return jsonify({"data": myresult})
 
 
-docs.register(Hello)
+api.add_resource(student, "/employee")
+api.add_resource(SearchStudent, "/employee/<int:id>")
+
 docs.register(student)
+docs.register(SearchStudent)
 
 if __name__ == "__main__":
     app.run(debug=True)
