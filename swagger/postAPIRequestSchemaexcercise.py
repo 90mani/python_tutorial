@@ -43,6 +43,13 @@ class StudentReuqetBody(Schema):
     passcode = fields.String(required=False, description="Student name")
     number = fields.Int(required=False, description="Student name")
 
+
+class StudentdeleteReuqetBody(Schema):
+    u_name = fields.String(required=False, description="Student name")
+
+
+
+
 class student(MethodResource, Resource):
     @doc(description="Fet all employees data", tags=["Employee"])
     def get(self, **kwargs):
@@ -77,15 +84,14 @@ class SearchStudent(MethodResource, Resource):
 
 class deletestudent(MethodResource, Resource):
     @doc(description="delete single data", tags=["Employee"])
-    @use_kwargs(StudentReuqetBody, location=("json"))
+    @use_kwargs(StudentdeleteReuqetBody, location=("json"))
     def delete(self,**kwargs):
         if request.method == "DELETE":
             requestPayload = request.get_json()
             print(requestPayload)
-            print(requestPayload["userId"])
+            #print(requestPayload["userId"])
             sql = "DELETE FROM employee WHERE name = " 
-            val=('u_name')
-            mycursor.execute(sql,val)
+            mycursor.execute(sql)
             mydb.commit()
             return jsonify({"data": (mycursor.rowcount) + "record(s) deleted"}), 200
     
