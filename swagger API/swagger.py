@@ -52,7 +52,7 @@ class student(MethodResource, Resource):
         if request.method == "GET":
             mycursor.execute("select* from marksheet")
             myresult = mycursor.fetchall()
-            return jsonify({"data": "myresult"})
+            return jsonify({"data": myresult})
         
 
 api.add_resource(Hello, "/hello")
