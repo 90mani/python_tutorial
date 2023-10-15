@@ -6,7 +6,7 @@
 import openpyxl
  
 # Give the location of the file
-path = "E:\\python code\\python_tutorial\\Excel file\\createname"
+path = "E:\\python code\\python_tutorial\\Excel file\\new"
  
 # To open the workbook 
 # workbook object is created
