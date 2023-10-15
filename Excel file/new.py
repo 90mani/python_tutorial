@@ -6,7 +6,7 @@
 import openpyxl
  
 # Give the location of the file
-path = "E:\\python code\\python_tutorial\\Excel file\\new"
+path = "C:\\Users\\Acer\\Documents\\try.xlsx"
  
 # To open the workbook 
 # workbook object is created
@@ -25,7 +25,7 @@ sheet_obj = wb_obj.active
  
 # Cell object is created by using 
 # sheet object's cell() method.
-cell_obj = sheet_obj.cell(row = 1, column = 1)
+cell_obj = sheet_obj.cell(row = 7, column = 5)
  
 # Print value of cell object 
 # using the value attribute
