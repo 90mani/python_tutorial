@@ -1,0 +1,6 @@
+CREATE TABLE person(
+id INT NOT NULL UNIQUE,
+lastname VARCHAR(255) NOT NULL,
+firstname VARCHAR(255) NOT NULL,
+age INT
+);
